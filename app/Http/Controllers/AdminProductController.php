@@ -17,9 +17,24 @@ class AdminProductController extends Controller
                   ->orWhere('category', 'like', "%{$search}%");
         }
 
-        $products = $query->latest()->paginate(10);
+        $products = $query->latest()->paginate(6);
 
         return view('admin.products.index', compact('products'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('q', '');
+        $query = Product::query();
+
+        if ($search) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('category', 'like', "%{$search}%");
+        }
+
+        $products = $query->latest()->limit(10)->get();
+
+        return response()->json($products);
     }
 
     public function create()
