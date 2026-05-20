@@ -23,13 +23,11 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .sidebar-link { transition: all 0.15s ease; }
-        .sidebar-link:hover, .sidebar-link.active { background: rgba(30, 122, 92, 0.15); color: #2A9D76; }
-        .sidebar-link.active { border-right: 3px solid #1E7A5C; }
-        .stat-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        .table-row { transition: background 0.1s ease; }
-        .table-row:hover { background: #F9FAFB; }
+        .sidebar-link { transition: all 0.2s ease; border-right: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(30, 122, 92, 0.08); color: #2A9D76; }
+        .sidebar-link.active { background: rgba(30, 122, 92, 0.1); color: #1E7A5C; border-right-color: #1E7A5C; }
+        .stat-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         /* Hide scrollbar */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
