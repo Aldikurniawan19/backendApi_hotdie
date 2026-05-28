@@ -40,7 +40,18 @@
                 @forelse($orders as $order)
                     <tr class="table-row border-b border-surface-border/50">
                         <td class="px-6 py-4 text-gray-500 text-sm font-mono">#{{ $order->id }}</td>
-                        <td class="px-6 py-4 text-gray-900 text-sm">{{ $order->user->name ?? '-' }}</td>
+                        <td class="px-6 py-4 text-gray-900 text-sm">
+                            <div class="flex items-center gap-2">
+                                <span>{{ $order->user->name ?? '-' }}</span>
+                                @if($order->notes)
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-500" title="Ada Catatan: {{ $order->notes }}">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                                        </svg>
+                                    </span>
+                                @endif
+                            </div>
+                        </td>
                         <td class="px-6 py-4 text-right text-gray-900 text-sm font-medium">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
                         <td class="px-6 py-4 text-center">
                             @php $sc = ['pending'=>'amber','on_delivery'=>'blue','completed'=>'emerald','canceled'=>'red'][$order->status] ?? 'gray'; @endphp

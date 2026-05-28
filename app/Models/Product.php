@@ -20,6 +20,8 @@ class Product extends Model
         'sizes',
         'colors',
         'is_active',
+        'is_popular',
+        'is_trending',
     ];
 
     protected $casts = [
@@ -28,5 +30,7 @@ class Product extends Model
         'sizes' => 'array',
         'colors' => 'array',
         'is_active' => 'boolean',
+        'is_popular' => 'boolean',
+        'is_trending' => 'boolean',
     ];
 }

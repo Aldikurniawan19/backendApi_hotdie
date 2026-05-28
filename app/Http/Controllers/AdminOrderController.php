@@ -32,6 +32,6 @@ class AdminOrderController extends Controller
         ]);
 
         $order->update(['status' => $request->status]);
-        return redirect()->back()->with('success', 'Status pesanan berhasil diperbarui.');
+        return redirect()->route('admin.orders.index')->with('success', 'Status pesanan berhasil diperbarui.');
     }
 }

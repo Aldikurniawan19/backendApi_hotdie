@@ -52,10 +52,14 @@ class AdminProductController extends Controller
             'category' => 'required|string|max:100',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_active' => 'boolean',
+            'is_popular' => 'boolean',
+            'is_trending' => 'boolean',
         ]);
 
         $data = $request->only(['name', 'description', 'price', 'stock', 'category']);
         $data['is_active'] = $request->has('is_active');
+        $data['is_popular'] = $request->has('is_popular');
+        $data['is_trending'] = $request->has('is_trending');
 
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -87,10 +91,14 @@ class AdminProductController extends Controller
             'category' => 'required|string|max:100',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_active' => 'boolean',
+            'is_popular' => 'boolean',
+            'is_trending' => 'boolean',
         ]);
 
         $data = $request->only(['name', 'description', 'price', 'stock', 'category']);
         $data['is_active'] = $request->has('is_active');
+        $data['is_popular'] = $request->has('is_popular');
+        $data['is_trending'] = $request->has('is_trending');
 
         // Handle image upload
         if ($request->hasFile('image')) {

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\WishlistController;
+use App\Http\Controllers\Api\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,11 @@ use App\Http\Controllers\Api\ProductController;
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',    [AuthController::class, 'login']);
+
+// Password reset routes (public)
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('/verify-otp',     [AuthController::class, 'verifyOtp']);
+Route::post('/reset-password',  [AuthController::class, 'resetPassword']);
 
 // Public product routes (for Flutter frontend)
 Route::get('/products',            [ProductController::class, 'index']);
@@ -38,5 +45,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/addresses',             [AddressController::class, 'store']);
     Route::put('/addresses/{address}',    [AddressController::class, 'update']);
     Route::delete('/addresses/{address}', [AddressController::class, 'destroy']);
+
+    // Wishlist
+    Route::get('/wishlist',              [WishlistController::class, 'index']);
+    Route::post('/wishlist/toggle',      [WishlistController::class, 'toggle']);
+    Route::get('/wishlist/check/{id}',   [WishlistController::class, 'check']);
+    Route::post('/wishlist/check',       [WishlistController::class, 'checkMultiple']);
+
+    // Orders
+    Route::get('/orders',                [OrderController::class, 'index']);
+    Route::post('/orders',               [OrderController::class, 'store']);
+    Route::get('/orders/{order}',        [OrderController::class, 'show']);
 });
+
 

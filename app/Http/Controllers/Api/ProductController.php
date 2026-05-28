@@ -20,6 +20,16 @@ class ProductController extends Controller
             $query->where('category', $category);
         }
 
+        // Optional popular filter
+        if ($request->has('is_popular')) {
+            $query->where('is_popular', $request->boolean('is_popular'));
+        }
+
+        // Optional trending filter
+        if ($request->has('is_trending')) {
+            $query->where('is_trending', $request->boolean('is_trending'));
+        }
+
         // Sort options
         $sort = $request->get('sort', 'newest');
         switch ($sort) {
