@@ -37,6 +37,7 @@ class OrderController extends Controller
             'coupon_code'       => 'nullable|string',
             'discount'          => 'nullable|numeric',
             'notes'             => 'nullable|string',
+            'payment_method'    => 'required|string',
             'items'             => 'required|array',
             'items.*.product_id'=> 'required|integer|exists:products,id',
             'items.*.quantity'  => 'required|integer|min:1',
@@ -53,6 +54,7 @@ class OrderController extends Controller
                 'coupon_code'      => $request->coupon_code,
                 'discount'         => $request->discount ?? 0,
                 'notes'            => $request->notes,
+                'payment_method'   => $request->payment_method,
             ]);
 
             foreach ($request->items as $item) {

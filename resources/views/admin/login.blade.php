@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Hotdie Admin</title>
+    <title>Login - W3Cart Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -73,12 +73,13 @@
         <div class="text-center mb-8">
             <div
                 class="w-14 h-14 bg-brand rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand/20">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
                 </svg>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800">Hotdie Admin</h1>
+            <h1 class="text-2xl font-bold text-gray-800">W3Cart Admin</h1>
             <p class="text-gray-400 text-sm mt-1">Masuk ke dashboard admin</p>
         </div>
 
@@ -96,7 +97,7 @@
                     <label class="block text-sm font-medium text-gray-600 mb-2">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" required autofocus
                         class="input-field w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-brand focus:bg-white focus:ring-0 text-sm"
-                        placeholder="admin@hotdie.com">
+                        placeholder="admin@w3cart.com">
                     @error('email')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror

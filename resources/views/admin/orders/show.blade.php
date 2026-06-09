@@ -74,6 +74,9 @@
                 <div class="space-y-3 text-sm">
                     <div class="flex justify-between"><span class="text-gray-500">Customer</span><span class="text-gray-900">{{ $order->user->name ?? '-' }}</span></div>
                     <div class="flex justify-between"><span class="text-gray-500">Tanggal</span><span class="text-gray-900">{{ $order->created_at->format('d M Y H:i') }}</span></div>
+                    @if($order->payment_method)
+                        <div class="flex justify-between"><span class="text-gray-500">Metode Pembayaran</span><span class="text-gray-900 font-medium">{{ $order->payment_method }}</span></div>
+                    @endif
                     @if($order->coupon_code)
                         <div class="flex justify-between"><span class="text-gray-500">Kupon</span><span class="text-brand font-mono">{{ $order->coupon_code }}</span></div>
                         <div class="flex justify-between"><span class="text-gray-500">Diskon</span><span class="text-red-400">-Rp {{ number_format($order->discount, 0, ',', '.') }}</span></div>

@@ -60,7 +60,7 @@
                     <tr>
                         <td style="background-color: #f8f9fa; padding: 20px 32px; text-align: center; border-top: 1px solid #e9ecef;">
                             <p style="margin: 0; color: #999999; font-size: 12px;">
-                                &copy; {{ date('Y') }} Hotdie. All rights reserved.
+                                &copy; {{ date('Y') }} W3Cart. All rights reserved.
                             </p>
                         </td>
                     </tr>

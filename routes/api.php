@@ -7,6 +7,9 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\CouponController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,10 @@ Route::get('/products',            [ProductController::class, 'index']);
 Route::get('/products/search',     [ProductController::class, 'search']);
 Route::get('/products/categories', [ProductController::class, 'categories']);
 Route::get('/products/{product}',  [ProductController::class, 'show']);
+Route::get('/categories',          [CategoryController::class, 'index']);
+
+// Public banner routes (for Flutter frontend)
+Route::get('/banners',             [BannerController::class, 'index']);
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -56,6 +63,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/orders',                [OrderController::class, 'index']);
     Route::post('/orders',               [OrderController::class, 'store']);
     Route::get('/orders/{order}',        [OrderController::class, 'show']);
+
+    // Coupons
+    Route::get('/coupons',               [CouponController::class, 'index']);
+    Route::post('/coupons/check',        [CouponController::class, 'check']);
 });
 
 

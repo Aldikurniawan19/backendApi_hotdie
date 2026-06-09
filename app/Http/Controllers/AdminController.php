@@ -60,8 +60,33 @@ class AdminController extends Controller
         $totalOrders = Order::count();
         $pendingOrders = Order::where('status', 'pending')->count();
 
-        // Transaksi Terkini
-        $recentOrders = Order::with('user')->orderBy('created_at', 'desc')->take(5)->get();
+        // Total Sales (sum of completed/all order totals)
+        $totalSales = Order::where('status', 'completed')->sum('total');
+        if ($totalSales == 0) {
+            $totalSales = Order::sum('total'); // Fallback if no completed orders
+        }
+
+        // Monthly Sales for the current year
+        $monthlySales = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $monthlySales[] = (double) Order::whereYear('created_at', now()->year)
+                ->whereMonth('created_at', $m)
+                ->sum('total');
+        }
+
+        // Shipment Status counts
+        $shipmentCounts = [
+            'delivered'   => Order::where('status', 'completed')->count(),
+            'on_delivery' => Order::where('status', 'on_delivery')->count(),
+            'pending'     => Order::where('status', 'pending')->count(),
+            'canceled'    => Order::where('status', 'canceled')->count(),
+        ];
+
+        // Transaksi Terkini (take 6, with items and products)
+        $recentOrders = Order::with(['user', 'items.product'])
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
 
         // 5 Produk Terlaris
         $topProducts = Product::select('products.*')
@@ -75,7 +100,8 @@ class AdminController extends Controller
         return view('admin.dashboard', compact(
             'totalProducts', 'activeProducts', 'totalUsers', 'lowStock',
             'totalCategories', 'totalCoupons', 'totalBanners',
-            'totalOrders', 'pendingOrders', 'recentOrders', 'topProducts'
+            'totalOrders', 'pendingOrders', 'recentOrders', 'topProducts',
+            'totalSales', 'monthlySales', 'shipmentCounts'
         ));
     }
 }
