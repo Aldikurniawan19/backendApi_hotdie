@@ -23,7 +23,15 @@
                                 <p class="text-gray-900 font-medium text-sm">{{ $user->name }}</p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 text-gray-500 text-sm">{{ $user->email }}</td>
+                        <td class="px-6 py-4 text-gray-500 text-sm">
+                            @php
+                                $parts = explode('@', $user->email);
+                                $local = $parts[0];
+                                $domain = $parts[1] ?? '';
+                                $masked = substr($local, 0, 2) . '***@' . $domain;
+                            @endphp
+                            {{ $masked }}
+                        </td>
                         <td class="px-6 py-4 text-gray-500 text-sm">{{ $user->created_at->format('d M Y') }}</td>
                     </tr>
                 @empty
